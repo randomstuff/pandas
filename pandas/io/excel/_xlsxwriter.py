@@ -204,6 +204,8 @@ class _XlsxWriter(ExcelWriter):
             wks = self.sheets[sheet_name]
         else:
             wks = self.book.add_worksheet(sheet_name)
+            # Disable formula injection:
+            wks.strings_to_formulas = False
             self.sheets[sheet_name] = wks
 
         style_dict = {"null": None}
