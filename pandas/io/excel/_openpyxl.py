@@ -414,6 +414,9 @@ class _OpenpyxlWriter(ExcelWriter):
                 row=startrow + cell.row + 1, column=startcol + cell.col + 1
             )
             xcell.value, fmt = self._value_with_fmt(cell.val)
+            # Disable formula and error injection:
+            if xcell.data_type == "f" or xcell.data_type == "e":
+                xcell.data_type = "s"
             if fmt:
                 xcell.number_format = fmt
 
